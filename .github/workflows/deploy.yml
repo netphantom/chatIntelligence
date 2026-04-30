@@ -33,7 +33,7 @@ jobs:
       - name: Read version from pyproject.toml
         id: version
         run: |
-          VERSION=$(uv version --short --project src/pyproject.toml)
+          VERSION=$(uv version --short --project pyproject.toml)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Verify tag matches pyproject version

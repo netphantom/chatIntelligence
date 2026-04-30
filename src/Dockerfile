@@ -3,7 +3,8 @@ LABEL authors="net_phantom"
 
 WORKDIR /home
 
-COPY . .
+COPY ../src .
+COPY ../pyproject.toml .
 
 RUN uv sync --project pyproject.toml
 

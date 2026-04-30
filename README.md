@@ -1,90 +1,177 @@
-# 💬 Self-Hosted Chat Intelligence
+# 💬 Chat Intelligence
 
-A modern self-hosted and open source analytics platform that transforms any chat export into behavioral, temporal, and content-based insights.
+A sophisticated, self-hosted analytics platform that transforms chat exports into comprehensive behavioral, temporal, and content-based insights. Built with a modular strategy pattern architecture for extensible analysis capabilities.
 
-No platform dependency. Works with any structured chat JSON export.
 ![img.png](img.png)
----
 
-## 🚀 Features
+## 🎯 Overview
 
-- 📊 Behavioral analysis (dominance, engagement)
-- ⏱️ Temporal patterns (weekly/monthly trends)
-- 🔥 Anomaly detection
-- 🧠 Word & content frequency analysis
-- 📈 Moving averages & periodicity detection
-- 🎯 Interactive visual analytics
+Chat Intelligence is an open-source solution that works with any structured chat JSON export, providing deep analytics without platform dependencies. Whether you're analyzing group dynamics, communication patterns, or content trends, this platform delivers actionable insights through interactive visualizations.
 
----
+## ✨ Key Features
 
-## 🧱 Architecture
+### 📊 **Behavioral Analysis**
+- **Dominance Index**: Measure participant influence and control in conversations
+- **Engagement Metrics**: Visualize participation patterns through pie charts
+- **Response Time Analysis**: Track communication latency and responsiveness
 
-- Streamlit frontend (single-page flow)
-- Strategy-based analytics engine
-- Modular chart system
-- Lazy-loaded data pipeline
-- Cached parsing layer
+### ⏱️ **Temporal Pattern Recognition**
+- **Weekly/Monthly Trends**: Identify recurring communication cycles
+- **Moving Averages**: Smooth out noise to reveal underlying patterns
+- **Periodicity Heatmaps**: Discover optimal communication times and patterns
+- **Filterable Timeline**: Interactive exploration of message flow over time
 
----
+### 🔍 **Content Intelligence**
+- **Word Frequency Analysis**: Identify trending topics and vocabulary patterns
+- **Content Classification**: Automatic categorization of message themes
+- **Anomaly Detection**: Spot unusual spikes or patterns in communication
 
-## 📦 Installation (local)
+### 📈 **Advanced Analytics**
+- **Peak Detection**: Automatically identify significant conversation peaks
+- **Time Series Analysis**: Comprehensive temporal data exploration
+- **Interactive Visualizations**: Dynamic charts with filtering and zoom capabilities
 
-### 1. Install uv
+## 🏗️ Architecture
+
+The platform follows a clean, modular architecture designed for scalability and maintainability:
+
+### **Frontend Layer**
+- **Streamlit Dashboard**: Single-page application with intuitive UI
+- **Real-time Updates**: Dynamic chart rendering based on user interactions
+- **Responsive Design**: Optimized for various screen sizes
+
+### **Analytics Engine**
+- **Strategy Pattern**: Modular chart strategies for easy extension
+- **Lazy Loading**: Efficient data processing with on-demand computation
+- **Caching Layer**: Optimized performance through intelligent caching
+
+### **Data Pipeline**
+- **Universal Parser**: Platform-agnostic chat data ingestion
+- **Structured Processing**: Clean data transformation and normalization
+- **Error Handling**: Robust parsing with comprehensive error reporting
+
+## 🚀 Quick Start
+
+### **Local Development**
+
+1. **Install uv (Python package manager)**
+   ```bash
+   curl -Ls https://astral.sh/uv/install.sh | sh
+   ```
+
+2. **Clone and setup the project**
+   ```bash
+   git clone <repository-url>
+   cd chatIntelligence
+   uv sync
+   ```
+
+3. **Launch the application**
+   ```bash
+   uv run streamlit run src/app.py
+   ```
+
+### **Docker Deployment**
+
+**Option 1: Pull from GitHub Container Registry**
 ```bash
-curl -Ls https://astral.sh/uv/install.sh | sh
-```
-### 2. Install dependencies
-```bash
-uv sync
-```
-### 3. Run app
-```bash
-uv run streamlit run app.py
+# Pull the latest pre-built image
+docker pull ghcr.io/netphantom/chatintelligence:latest
+
+# Run the application
+docker run -p 8501:8501 ghcr.io/netphantom/chatintelligence:latest
 ```
 
-## 🐳 Docker
+**Option 2: Build locally**
 ```bash
-docker build -t conversation-intelligence .
-```
-```bash
-docker run -p 8501:8501 conversation-intelligence
+# Build the container
+docker build -t chat-intelligence .
+
+# Run the application
+docker run -p 8501:8501 chat-intelligence
 ```
 
-## 📁 Project structure
+## 📂 Project Structure
+
 ```
-.
-├── app.py
-├── controller/
-│   └── TelegramParser.py
-├── view/
-│   ├── DashboardApp.py
-│   └── charts/
-│       ├── strategies...
-├── pyproject.toml
-├── Dockerfile
-└── .github/workflows/
+chatIntelligence/
+├── src/
+│   ├── app.py                    # Main application entry point
+│   ├── controller/
+│   │   ├── TelegramParser.py     # Chat data parsing logic
+│   │   └── __init__.py
+│   └── view/
+│       ├── DashboardApp.py       # Streamlit dashboard implementation
+│       ├── charts/
+│       │   ├── ChartStrategy.py          # Base strategy interface
+│       │   ├── DominanceIndexStrategy.py # Dominance analysis
+│       │   ├── EngagementPieStrategy.py  # Engagement visualization
+│       │   ├── FilterableTimelineStrategy.py # Interactive timeline
+│       │   ├── MovingAverageStrategy.py  # Trend analysis
+│       │   ├── PeakAnomalyStrategy.py    # Anomaly detection
+│       │   ├── PeriodicityHeatmapStrategy.py # Time pattern analysis
+│       │   ├── ResponseTimeStrategy.py   # Response time metrics
+│       │   ├── TimeSeriesPlotStrategy.py # Basic time series
+│       │   ├── WordFrequencyStrategy.py # Content analysis
+│       │   └── __init__.py
+│       └── __init__.py
+├── pyproject.toml               # Project configuration and dependencies
+├── Dockerfile                   # Container build configuration
+├── .github/
+│   └── workflows/
+│       └── deploy.yml           # CI/CD pipeline
+├── README.md                    # This documentation
+└── LICENSE                      # MIT License
 ```
+
 ## ⚙️ Configuration
 
-No environment variables required by default.
+### **Environment Variables**
+No environment variables required for basic operation.
 
-Optional:
+### **Optional Configuration**
+- **Logging Level**: Control verbosity of application logs
+- **Cache Settings**: Tune performance parameters (future feature)
+- **Chart Defaults**: Customize visualization preferences
 
-* logging level
-* cache tuning (future)
+## 🧠 Design Principles
 
-## 🧠 Design principles
-* Strategy pattern for analytics modules
-* Separation between UI and computation
-* Stateless execution model
-* Cached dataset parsing
+- **Strategy Pattern**: Extensible analytics modules for easy feature addition
+- **Separation of Concerns**: Clear distinction between UI, logic, and data layers
+- **Stateless Execution**: Efficient resource usage with minimal memory footprint
+- **Lazy Evaluation**: Compute analytics only when needed
+- **Modular Architecture**: Independent components for maintainability
 
-## 📌 Future improvements
-* AI-generated summaries per section
-* Export to PDF report
-* Streaming analysis (real-time ingestion)
-* Multi-chat comparison mode
+## 🔧 Technical Stack
 
-## 📜 License
+- **Frontend**: Streamlit for rapid web application development
+- **Backend**: Python 3.13+ with modern async capabilities
+- **Data Processing**: Pandas for efficient data manipulation
+- **Visualization**: Plotly for interactive, publication-quality charts
+- **Package Management**: uv for fast, reliable dependency management
 
-MIT
+## 🚀 Roadmap
+
+### **Near Future**
+- [ ] AI-powered conversation summaries
+- [ ] PDF report generation
+- [ ] Real-time streaming analysis
+- [ ] Multi-chat comparison dashboard
+
+### **Long-term Vision**
+- [ ] Advanced sentiment analysis
+- [ ] Custom chart strategy builder
+- [ ] Integration with popular chat platforms
+- [ ] Team collaboration features
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our contributing guidelines for details on:
+- Code style and standards
+- Testing requirements
+- Pull request process
+- Issue reporting
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v8  # verifica latest su marketplace
+        uses: astral-sh/setup-uv@v7
 
       - name: Read version from pyproject.toml
         id: version
